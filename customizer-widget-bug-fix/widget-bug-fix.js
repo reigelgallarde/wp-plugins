@@ -11,7 +11,11 @@ jQuery(document).ready( function($) {
 	});
   // update the content of the widget....
 	$( document ).on( 'widget-synced', function(e,widget ,form) {
-		$('#' + widget[0].id + ' .widget-content').html(form);
+		var _widget = $('#' + widget[0].id);
+		if (_widget.data('synced') != true) {
+			_widget.find('.widget-content').html(form);
+			_widget.data('synced', true);	
+		}
 	});
 
 });

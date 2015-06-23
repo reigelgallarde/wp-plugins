@@ -6,16 +6,18 @@ jQuery(document).ready( function($) {
 		if ($saveBtn.closest('.control-section').is(':visible')) {
 			// if the control for this widget is ready, let's hit apply...
 			$saveBtn.click();
-			widget.data('new_widget', true);
+			widget.data('new', true);
 		}
 	});
 	
 	// update the content of the widget....
 	$( document ).on( 'widget-synced', function(e,widget ,form) {
 		var _widget = $('#' + widget[0].id);
-		if (_widget.data('new_widget') == true) {
+		if (_widget.data('new') == true) {
+			var origFocus = document.activeElement;
 			_widget.find('.widget-content').html(form);
-			_widget.data('new_widget', false);	
+			origFocus.focus();
+			_widget.data('new', false);	
 		}
 	});
 

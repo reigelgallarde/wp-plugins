@@ -14,9 +14,9 @@ jQuery(document).ready( function($) {
 	$( document ).on( 'widget-synced', function(e,widget ,form) {
 		var _widget = $('#' + widget[0].id);
 		if (_widget.data('new') == true) {
-			var origFocus = document.activeElement;
+			var origFocus = document.activeElement.id;
 			_widget.find('.widget-content').html(form);
-			origFocus.focus();
+			document.getElementById(origFocus).focus();
 			_widget.data('new', false);	
 		}
 	});
